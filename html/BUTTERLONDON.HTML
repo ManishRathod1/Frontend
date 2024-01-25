@@ -1,0 +1,66 @@
+
+<html>
+<head>
+
+  <title>API Data Display</title>
+<link rel="stylesheet" type="text/css" href="C:\Users/Hp\Desktop\FRONTEND\css\branding.css">
+</head>
+<body onload="getDataOnLoad()">
+
+  <h1 class="blinking-text">API Data Display</h1>
+
+  <div id="apiData"></div>
+
+  <script>
+    function getDataOnLoad() {
+      // Replace this URL with your API endpoint
+      var apiEndpoint = 'http://makeup-api.herokuapp.com/api/v1/products.json?brand=butter london';
+
+      var xhr = new XMLHttpRequest();
+      xhr.open('GET', apiEndpoint, true);
+
+      xhr.onload = function () {
+        if (xhr.status == 200) {
+          try {
+            var response = JSON.parse(xhr.responseText);
+            displayApiData(response);
+          } catch (error) {
+            console.error('Error parsing JSON:', error);
+            document.getElementById('apiData').innerHTML = 'Error parsing API response.';
+          }
+        } else {
+          console.error('Request failed with status:', xhr.status);
+          document.getElementById('apiData').innerHTML = 'Error fetching data. Check console for details.';
+        }
+      };
+
+      xhr.onerror = function () {
+        console.error('Request failed. Check network connection or CORS settings.');
+        document.getElementById('apiData').innerHTML = 'Request failed. Check console for details.';
+      };
+
+      xhr.send();
+    }
+
+    function displayApiData(data) {
+      var apiDataContainer = document.getElementById('apiData');
+      apiDataContainer.innerHTML = ''; // Clear previous content
+
+      if (data.length > 0) {
+        var ul = document.createElement('ul');
+
+        data.forEach(function (item) {
+          var li = document.createElement('li');
+          li.textContent = item.name; // Adjust this based on your API response structure
+          ul.appendChild(li);
+        });
+
+        apiDataContainer.appendChild(ul);
+      } else {
+        apiDataContainer.innerHTML = 'No data found from the API.';
+      }
+    }
+  </script>
+
+</body>
+</html>

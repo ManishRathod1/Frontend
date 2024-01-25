@@ -1,0 +1,31 @@
+<html>
+<html>
+<head>
+<title>Account Creation Form</title>
+   <link rel="stylesheet" type="text/css" href="C:\Users\Hp\Desktop\FRONTEND\css\creatccount.css">  
+</head>
+<body>
+
+<div class="container">
+    <h2>Create Account</h2>
+    <form id="signupForm">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" placeholder="Enter your name" required>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" placeholder="Enter your email" required>
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" placeholder="Enter your password" required>
+
+        <label for="confirmPassword">Confirm Password:</label>
+        <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm your password" required>
+
+        <button type="button" onclick="validateForm()">Create Account</button>
+
+        <div id="errorMessages" class="error"></div>
+    </form>
+</div>
+<script src="C:\Users\Hp\Desktop\FRONTEND\js\createaccount.js"></script>
+</body>
+</html>
